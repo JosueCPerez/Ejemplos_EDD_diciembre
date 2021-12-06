@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1638804403 source:c:\users\joshu\desktop\edd_vacasdiciembre\ejemplos\ejemplo_pilaycola\src\nodo_lista.cpp
+	"nodo_lista.h"
+
+1638805649 c:\users\joshu\desktop\edd_vacasdiciembre\ejemplos\ejemplo_pilaycola\include\nodo_lista.h
+	<iostream>
+
+1638806835 source:c:\users\joshu\desktop\edd_vacasdiciembre\ejemplos\ejemplo_pilaycola\main.cpp
+	<iostream>
+	"lista.h"
+
+1638806950 c:\users\joshu\desktop\edd_vacasdiciembre\ejemplos\ejemplo_pilaycola\include\lista.h
+	"nodo_lista.h"
+
+1638807164 source:c:\users\joshu\desktop\edd_vacasdiciembre\ejemplos\ejemplo_pilaycola\src\lista.cpp
+	"lista.h"
+
