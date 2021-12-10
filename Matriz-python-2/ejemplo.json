@@ -1,0 +1,147 @@
+{
+    "vendedores":
+    [
+        {
+            "id":1,
+            "nombre":"juan",
+            "edad": 25,
+            "correo": "juan@gmail.com",
+            "password": "juanito1234"
+        },
+        {
+            "id":2,
+            "nombre":"Luis",
+            "edad": 30,
+            "correo": "luis@gmail.com",
+            "password": "luis555"
+        }
+    ]
+}
+
+•	Id
+•	Nombre
+•	correo
+
+
+{
+    "vendedores":
+   [
+       {
+           "id":1,
+           "clientes":[
+               {
+                   "id":1,
+                   "nombre":"cliente1",
+                   "correo":"cliente1@gmail.com"
+               },
+               {
+                "id":2,
+                "nombre":"cliente2",
+                "correo":"cliente2@gmail.com"
+            },
+            {
+                "id":3,
+                "nombre":"cliente3",
+                "correo":"cliente3@gmail.com"
+            }
+           ]
+       },
+       {
+        "id":2,
+        "clientes":[
+            {
+                "id":1,
+                "nombre":"cliente1",
+                "correo":"cliente1@gmail.com"
+            },
+            {
+             "id":2,
+             "nombre":"cliente2",
+             "correo":"cliente2@gmail.com"
+         }
+        ]
+    }
+   ]
+}
+
+•	id
+•	nombre
+•	dirección
+•	teléfono 
+•	correo
+
+{
+    "proveedores":
+    [
+        {
+            "id":1,
+            "nombre":"proveedor1",
+            "direccion": "ciudad",
+            "telefono":59595959,
+            "correo": "proveedor1@gmail.com"
+        },
+        {
+            "id":2,
+            "nombre":"proveedor2",
+            "direccion": "ciudad",
+            "telefono":55550000,
+            "correo": "proveedor2@gmail.com"
+        },
+        {
+            "id":3,
+            "nombre":"proveedor3",
+            "direccion": "ciudad",
+            "telefono":51515151,
+            "correo": "proveedor3@gmail.com"
+        }
+    ]
+}
+
+
+{
+    "vendedores":
+   [
+       {
+           "id":1,
+           "meses":[
+               [
+                   {
+                       "mes":"Enero",
+                       "eventos":[
+                           {
+                               "dia":10,
+                               "hora":7,
+                               "desc":"reunion"
+                           }
+                       ]
+                   },
+                   {
+                    "mes":"Marzo",
+                    "eventos":[
+                        {
+                            "dia":5,
+                            "hora":10,
+                            "desc":"desayuno de negocios"
+                        }
+                    ]
+                }
+               ]
+           ]
+       },
+       {
+        "id":2,
+        "clientes":[
+            {
+                "id":1,
+                "nombre":"cliente1",
+                "correo":"cliente1@gmail.com"
+            },
+            {
+             "id":2,
+             "nombre":"cliente2",
+             "correo":"cliente2@gmail.com"
+         }
+        ]
+    }
+   ]
+}
