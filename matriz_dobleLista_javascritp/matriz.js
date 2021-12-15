@@ -225,10 +225,94 @@ class matriz{
             aux = aux.sig;
         }
     }
+
+    graficar_matriz(){
+        let cadena="";
+        cadena+= "digraph Matriz{ \n";
+        cadena+= "node[shape = box,width=0.7,height=0.7,fillcolor=\"azure2\" color=\"white\" style=\"filled\"];\n";
+        cadena+= "edge[style = \"bold\"]; \n"
+        //graficar el nodo matriz
+        cadena+="node[label = Matriz fillcolor=\" darkolivegreen1\" pos = \"-1,1!\"]principal;"
+        //graficar cabeceras X
+        let aux_x = this.cabecetas_x.primero;
+        while(aux_x!=null){
+            cadena+="node[label = "+aux_x.dato+" fillcolor=\" azure1\" pos = \""+aux_x.dato+",1!\"]x"+aux_x.dato+";\n"
+            aux_x = aux_x.sig;
+        }
+        aux_x = this.cabecetas_x.primero;
+        while(aux_x.sig != null){
+            cadena+="x"+aux_x.dato+"->"+"x"+aux_x.sig.dato+";\n"
+            cadena+="x"+aux_x.sig.dato+"->"+"x"+aux_x.dato+";\n"
+            aux_x = aux_x.sig;
+        }
+
+        if(this.cabecetas_x.primero!= null){
+            cadena+="principal->x"+this.cabecetas_x.primero.dato+";\n";
+        }
+        //graficar cabeceras Y
+        let aux_y = this.cabecetas_y.primero;
+        while(aux_y!=null){
+            cadena+="node[label = "+aux_y.dato+" fillcolor=\" azure1\" pos = \"-1,-"+aux_y.dato+"!\"]y"+aux_y.dato+";\n"
+            aux_y = aux_y.sig;
+        }
+        aux_y = this.cabecetas_y.primero;
+        while(aux_y.sig != null){
+            cadena+="y"+aux_y.dato+"->"+"y"+aux_y.sig.dato+";\n"
+            cadena+="y"+aux_y.sig.dato+"->"+"y"+aux_y.dato+";\n"
+            aux_y = aux_y.sig;
+        }
+
+        if(this.cabecetas_x.primero!= null){
+            cadena+="principal->y"+this.cabecetas_y.primero.dato+";\n";
+        }
+        //graficar nodos internos
+        aux_x = this.cabecetas_x.primero;
+        while(aux_x!=null){ //recorrer listas de x para graficar los nodos de sus lista interna
+            let aux = aux_x.lista_interna.primero;
+            while(aux!=null){
+                cadena+="   node[label = "+aux.valor+" fillcolor=\" gold2\" pos = \""+aux.x+",-"+aux.y+"!\"]x"+aux.x+"y"+aux.y+";\n"
+                aux = aux.sig;
+            }
+
+            //graficar flechitas
+            aux = aux_x.lista_interna.primero;
+            while(aux.sig!= null){
+                cadena+="   x"+aux.x+"y"+aux.y+"->x"+aux.sig.x+"y"+aux.sig.y+";\n";
+                cadena+="   x"+aux.sig.x+"y"+aux.sig.y+"->x"+aux.x+"y"+aux.y+";\n";
+                aux= aux.sig;
+            }
+            if(aux_x.lista_interna.primero!= null){
+                cadena+="x"+aux_x.dato+"->"+"x"+aux_x.lista_interna.primero.x+"y"+aux_x.lista_interna.primero.y+";\n";
+            }
+
+            aux_x = aux_x.sig;
+        }
+
+        aux_y = this.cabecetas_y.primero;
+        while(aux_y!=null){ //recorrer la lista de y para graficar cada lista
+            //graficar flechitas Y
+            let aux = aux_y.lista_interna.primero;
+            while(aux.abajo!= null){
+                cadena+="   x"+aux.x+"y"+aux.y+"->x"+aux.abajo.x+"y"+aux.abajo.y+";\n";
+                cadena+="   x"+aux.abajo.x+"y"+aux.abajo.y+"->x"+aux.x+"y"+aux.y+";\n";
+                aux= aux.abajo;
+            }
+            if(aux_y.lista_interna.primero!= null){
+                cadena+="y"+aux_y.dato+"->"+"x"+aux_y.lista_interna.primero.x+"y"+aux_y.lista_interna.primero.y+";\n";
+            }
+            aux_y = aux_y.sig;
+        }
+
+        cadena+= "\n}"
+        console.log(cadena);
+    }
 }
+
 
 let matriz1 = new matriz();
 
+matriz1.insertar(0,0,0);
+matriz1.insertar(50,0,1);
 matriz1.insertar(5,1,1);
 matriz1.insertar(6,2,3);
 matriz1.insertar(1,10,1);
@@ -236,3 +320,4 @@ matriz1.insertar(2,1,2);
 matriz1.insertar(7,3,3);
 
 matriz1.recorrer_matriz();
+matriz1.graficar_matriz();
