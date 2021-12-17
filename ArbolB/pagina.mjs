@@ -1,0 +1,6 @@
+
+class pagina{
+
+}
+
+export {pagina}
