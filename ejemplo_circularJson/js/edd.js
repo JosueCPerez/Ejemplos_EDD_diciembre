@@ -91,14 +91,15 @@ function imprimir_listaD(){
 function ir_vista2(){
    // lista_d.insertar_anidado(1,10);
     var lista_temp = CircularJSON.stringify(lista_d);
-    sessionStorage.setItem("lista_doble",JSON.stringify(lista_temp))
+    var lista_temp2 = JSON.stringify(lista_temp); //usar variables para evitar errores
+    sessionStorage.setItem("lista_doble",lista_temp2);
     location.href="./edd.html";
 }
 
 function recuperar_lista(){
     var lista_tem = JSON.parse(sessionStorage.getItem("lista_doble"));
     lista_d = new lista_doble();
-    lista_tem = CircularJSON.parse(lista_tem);
+    lista_tem = CircularJSON.parse(lista_tem); 
     Object.assign(lista_d,lista_tem);
 
     let aux = lista_d.primero;
