@@ -1,6 +1,0 @@
-
-class pagina{
-
-}
-
-export {pagina}
