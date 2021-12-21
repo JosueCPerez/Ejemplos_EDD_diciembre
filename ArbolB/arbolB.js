@@ -237,7 +237,7 @@ class Arbol_B{
                     return pagina_actual;
                 }
             }else{ // va en los apuntadores de los nodos de en medio
-                let aux = pagina.claves.primero;
+                let aux = pagina_actual.claves.primero;
 
                 while(aux != null){
                     if(nuevo.dato < aux.dato){
@@ -259,6 +259,74 @@ class Arbol_B{
         }
         return this;
     }
+
+    graficar(){
+        let cadena="digraph arbolB{\n";
+        cadena+="rankr=TB;\n";
+        cadena+="node[shape = box,fillcolor=\"azure2\" color=\"black\" style=\"filled\"];\n";
+        //metodos para graficar el arbol
+        cadena+= this.graficar_nodos(this.raiz);
+        cadena+=  this.graficar_enlaces(this.raiz);
+        cadena+="}\n"
+
+        return cadena;
+    }
+
+    graficar_nodos(raiz_actual){
+        let cadena="";
+
+        if(raiz_actual.es_hoja(raiz_actual)){ //si es un hhoja solo grafica el nodo
+            cadena+="node[shape=record label= \"<p0>"
+            let contador=0;
+            let aux = raiz_actual.claves.primero;
+            while(aux!=null){
+                contador++;
+                cadena+="|{"+aux.dato+"}|<p"+contador+"> ";
+                aux= aux.siguiente;
+            }
+            cadena+="\"]"+raiz_actual.claves.primero.dato+";\n";
+            return cadena;
+        }else{
+            cadena+="node[shape=record label= \"<p0>"
+            let contador=0;
+            let aux = raiz_actual.claves.primero;
+            while(aux!=null){
+                contador++;
+                cadena+="|{"+aux.dato+"}|<p"+contador+"> ";
+                aux= aux.siguiente;
+            }
+            cadena+="\"]"+raiz_actual.claves.primero.dato+";\n";
+
+            //recorrer los hicos de cada clave
+            aux = raiz_actual.claves.primero;
+            while(aux != null){
+                cadena+= this.graficar_nodos(aux.izq);
+                aux = aux.siguiente;
+            }
+            cadena+= this.graficar_nodos(raiz_actual.claves.ultimo.der);
+            return cadena;
+        }   
+    }
+
+    graficar_enlaces(raiz_actual){
+        let cadena="";
+        if(raiz_actual.es_hoja(raiz_actual)){
+            return ""+raiz_actual.claves.primero.dato+";\n";
+        }else{
+            //cadena += ""+raiz_actual.claves.primero.dato+";\n";
+
+            let aux = raiz_actual.claves.primero;
+            let contador =0;
+            let raiz_actual_txt = raiz_actual.claves.primero.dato;
+            while(aux != null){
+                cadena+= "\n"+raiz_actual_txt+":p"+contador+"->"+this.graficar_enlaces(aux.izq);
+                contador++;
+                aux = aux.siguiente;
+            }
+            cadena+="\n"+raiz_actual_txt+":p"+contador+"->"+this.graficar_enlaces(raiz_actual.claves.ultimo.der);
+            return cadena;
+        }
+    }
 }
 /************************************************************ */
 
@@ -271,4 +339,16 @@ arbol.insertar_nodo(13);
 arbol.insertar_nodo(8);
 arbol.insertar_nodo(35);
 arbol.insertar_nodo(14);
+arbol.insertar_nodo(10);
+arbol.insertar_nodo(9);
+arbol.insertar_nodo(12);
+arbol.insertar_nodo(17);
+arbol.insertar_nodo(22);
+arbol.insertar_nodo(25);
 
+arbol.insertar_nodo(100);
+arbol.insertar_nodo(150);
+arbol.insertar_nodo(220);
+arbol.insertar_nodo(325);
+
+console.log(arbol.graficar());
